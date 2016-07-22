@@ -1,0 +1,47 @@
+<style media="screen">
+
+  #mobiusForm * {
+    font-size: 16px;
+  }
+  #mobiusForm {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 4px grey;
+    width: 40em;
+    padding: 1em;
+  }
+  #mobiusForm fieldset {
+    border: none;
+    padding-left:0;
+  }
+  #mobiusForm input[name="searchString"] {
+    display:block;
+    width:75%;
+  }
+  #mobiusForm button {
+    display:block;
+  }
+</style>
+<script type="text/javascript">
+  function searchMobius() {
+    var searchString = document.querySelector('input[name="searchString"]').value,
+        searchType = document.querySelector('input[name="searchType"]:checked').value,
+        searchQuery = encodeURI(searchType + "(" + searchString + ")");
+
+    var encoreLocation = "https://searchmobius.org//iii/encore/search/C__S";
+    encoreLocation = encoreLocation + searchQuery;
+    encoreLocation = encoreLocation + "__Orightresult__U?lang=eng&suite=cobalt";
+    console.log(encoreLocation);
+    window.location.href = encoreLocation;
+    return false;
+  }
+</script>
+<form id="mobiusForm" onsubmit="return searchMobius();">
+  <input type="text" name="searchString" value="" placeholder="Search the MOBIUS catalog">
+  <fieldset>
+    <label><input type="radio" name="searchType" value="" checked>Keyword</label>
+    <label><input type="radio" name="searchType" value="a:">Author</label>
+    <label><input type="radio" name="searchType" value="t:">Title</label>
+    <label><input type="radio" name="searchType" value="d:">Subject</label>
+  </fieldset>
+  <button type="submit">Submit</button>
+</form>
