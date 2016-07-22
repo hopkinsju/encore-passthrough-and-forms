@@ -1,0 +1,22 @@
+<script type="text/javascript">
+  function searchMobius() {
+    var searchString = document.querySelector('input[name="searchString"]').value,
+        searchType = document.querySelector('input[name="searchType"]:checked').value,
+        searchQuery = encodeURI(searchType + "(" + searchString + ")");
+
+    var encoreLocation = "https://searchmobius.org//iii/encore/search/C__S";
+    encoreLocation = encoreLocation + searchQuery;
+    encoreLocation = encoreLocation + "__Orightresult__U?lang=eng&suite=cobalt";
+    console.log(encoreLocation);
+    window.location.href = encoreLocation;
+    return false;
+  }
+</script>
+<form id="mobiusForm" onsubmit="return searchMobius();">
+  <input type="text" name="searchString" value="" placeholder="Search the MOBIUS catalog">
+  <label><input type="radio" name="searchType" value="" checked>Keyword</label>
+  <label><input type="radio" name="searchType" value="a:">Author</label>
+  <label><input type="radio" name="searchType" value="t:">Title</label>
+  <label><input type="radio" name="searchType" value="d:">Subject</label>
+  <button type="submit">Submit</button>
+</form>
